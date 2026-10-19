@@ -1,0 +1,52 @@
+.archive-root{color-scheme:dark}.archive-root.daylight{color-scheme:light}
+/* Cover artwork stays unchanged; the acrylic and foreground follow the host theme. */
+.archive-root{
+  --cover-ink:#fff;
+  --cover-shade:linear-gradient(180deg,#0001 25%,#15101944 47%,#100b15ed 100%);
+  --cover-glass:#17111e8c;
+  --cover-line:#ffffff45;
+  --cover-inner-line:#fff2;
+  --cover-hover-line:#fff9;
+  --cover-text-shadow:0 2px 15px #0006;
+}
+.archive-root.daylight{
+  --cover-ink:var(--ink);
+  --cover-shade:linear-gradient(180deg,transparent 20%,color-mix(in srgb,var(--bg) 10%,transparent) 30%,color-mix(in srgb,var(--bg) 76%,transparent) 58%,color-mix(in srgb,var(--bg) 98%,transparent) 100%);
+  --cover-glass:color-mix(in srgb,var(--bg) 86%,transparent);
+  --cover-line:color-mix(in srgb,var(--ink) 30%,transparent);
+  --cover-inner-line:color-mix(in srgb,var(--bg) 58%,transparent);
+  --cover-hover-line:color-mix(in srgb,var(--ink) 65%,transparent);
+  --cover-text-shadow:0 1px 8px color-mix(in srgb,var(--bg) 60%,transparent);
+}
+.archive-root .cover-window{color:var(--cover-ink);border-color:var(--cover-line)}
+.archive-root .window-primary{color:var(--cover-ink)}
+.archive-root .window-shade,.archive-root .detail-cover-pane>span{background:var(--cover-shade)}
+.archive-root .window-copy{color:var(--cover-ink);text-shadow:var(--cover-text-shadow)}
+.archive-root .missing-art .window-copy{background:none}
+.archive-root .window-rank,.archive-root .window-actions button{color:var(--cover-ink);background:var(--cover-glass);border-color:var(--cover-line)}
+.archive-root .window-rank>i,.archive-root .window-facts i{background:currentColor}
+.archive-root .window-inner-border,.archive-root .detail-cover-pane:after{border-color:var(--cover-inner-line)}
+.archive-root .cover-window:hover{border-color:var(--cover-hover-line);box-shadow:inset 0 0 0 1px var(--cover-inner-line)}
+.archive-root .window-actions button:hover{background:var(--ink);color:var(--bg)}
+.archive-root .window-actions button:focus-visible{outline-color:var(--accent)}
+.archive-root .detail-cover-pane .detail-title{color:var(--cover-ink);text-shadow:var(--cover-text-shadow)}
+.archive-root .detail-cover-pane .eyebrow{color:inherit;opacity:.8}
+.daylight .no-cover i{border-color:var(--line);background:repeating-radial-gradient(circle,transparent 0 12px,var(--line) 13px,transparent 14px 20px)}
+.dense-mode.low-motion .window-rank{backdrop-filter:none}
+.ribbon-play button{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.ribbon-play button>span{font-family:'Microsoft YaHei UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif;font-size:12px;font-weight:500;font-synthesis:none;letter-spacing:0}
+.archive-select{position:relative;flex:none;min-width:104px;color:var(--ink);font-size:11px;z-index:5}
+.archive-select>button{height:29px;display:flex;align-items:center;justify-content:space-between;gap:13px;width:100%;padding:5px 9px;border:1px solid var(--glass-line);background:color-mix(in srgb,var(--ink) 3%,transparent);text-align:left;white-space:nowrap;transition:background .18s,border-color .18s}
+.archive-select>button:hover,.archive-select[data-open]>button{background:color-mix(in srgb,var(--ink) 9%,transparent);border-color:color-mix(in srgb,var(--ink) 45%,transparent)}
+.archive-select>button:focus-visible{outline:1px solid var(--accent);outline-offset:2px}.archive-select>button svg{transition:transform .18s;opacity:.65}.archive-select[data-open]>button svg{transform:rotate(180deg)}
+.archive-select-menu{position:absolute;right:0;top:calc(100% + 4px);min-width:146px;padding:3px;background:color-mix(in srgb,var(--bg) 88%,transparent);border:1px solid var(--glass-line);backdrop-filter:blur(24px) saturate(.85);box-shadow:0 8px 26px #0004;animation:archive-menu-enter .15s ease-out both;transform-origin:top right;z-index:20}
+.archive-select[data-side=top] .archive-select-menu{top:auto;bottom:calc(100% + 4px);transform-origin:bottom right}
+.archive-select-menu>[role=option]{min-height:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:6px 10px;cursor:pointer;color:var(--muted);border:1px solid transparent}
+.archive-select-menu>[aria-selected=true]{color:var(--ink)}.archive-select-menu>[data-active]{color:var(--ink);background:color-mix(in srgb,var(--ink) 9%,transparent);border-color:var(--line)}.archive-select-menu>[role=option]>span:last-child{color:var(--accent);font-size:12px;min-width:12px}
+.ribbon-controls{gap:12px}.ribbon-search{flex:1 1 100px;max-width:200px;min-width:95px}.ribbon-search input{width:100%;min-width:0}.ribbon-refresh{margin-left:0;white-space:nowrap;flex:none}.ribbon-date{white-space:nowrap}.ribbon-date label:focus-within,.art-picker label:focus-within{outline:1px solid var(--accent);outline-offset:3px}.ribbon-search:focus-within{border-bottom-color:var(--accent)}
+.ribbon-header nav button:hover,.ribbon-entities button:hover,.ribbon-views button:hover{opacity:1}.ribbon-period button:hover{border-color:var(--glass-line)}.ribbon-settings:hover{background:var(--line)}
+.setting-row input[type=checkbox]{accent-color:var(--accent);cursor:pointer}.settings-sheet input[type=file]{accent-color:var(--accent)}.dense-mode.low-motion .archive-select-menu{backdrop-filter:none;background:var(--bg)}
+.dense-empty{line-height:1.9}.dense-empty strong{font-weight:500;color:var(--ink)}
+@keyframes archive-menu-enter{from{opacity:0;transform:translateY(-3px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:760px){.ribbon-controls{gap:10px}.archive-select{font-size:10px;min-width:96px}.ribbon-search{max-width:170px}}
+@media(max-width:500px){.ribbon-controls{gap:8px}.ribbon-date{gap:2px}.ribbon-date .now{font-size:9px}.archive-select{font-size:10px;min-width:94px}.archive-select>button{height:27px;padding:4px 7px;gap:7px}.ribbon-search{flex:1 1 95px;max-width:140px;min-width:95px}.archive-select-menu{min-width:140px}}
