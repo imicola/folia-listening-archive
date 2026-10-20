@@ -4,14 +4,22 @@
 
 适配并实际加载验证：Windows 上的 Folia 0.7.21、Folium 1.6。其他系统和后续 Folia 版本尚未实测。
 
-当前版本 1.1.1：合并完整 v1.0.1 的主题、字体与图标修正；左侧来源菜单可切换 Folia / 网易云。网易云沿用 Folia 内置服务与现有登录，不需额外服务、应用密钥或重复扫码。
+当前版本 1.1.2：修复来源菜单越界与报告保存按钮遮挡，补充示例截图。合并完整 v1.0.1 的主题、字体与图标修正；左侧来源菜单可切换 Folia / 网易云。网易云沿用 Folia 内置服务与现有登录，不需额外服务、应用密钥或重复扫码。
 
 源码与问题反馈：[GitHub 仓库](https://github.com/imicola/folia-listening-archive) · 安装包：[Releases](https://github.com/imicola/folia-listening-archive/releases/latest)
+
+## 界面预览
+
+截图使用合成数据、示例账号和原创抽象占位图，不含真实账号资料。[查看全部 6 张截图](https://github.com/imicola/folia-listening-archive/blob/v1.1.2/docs/screenshots/README.md)。
+
+![Folia 本机排行示例](https://raw.githubusercontent.com/imicola/folia-listening-archive/v1.1.2/docs/screenshots/folia-rank.png)
+
+![网易云时长示例](https://raw.githubusercontent.com/imicola/folia-listening-archive/v1.1.2/docs/screenshots/netease-time.png)
 
 ## 安装
 
 1. 在 Folia 的「设置 → 模组」开启模组系统。
-2. 安装 `listening-archive-v1.1.1.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
+2. 安装 `listening-archive-v1.1.2.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
 3. 启用「听歌档案」，阅读 Folia 显示的权限说明并确认。首页会出现「听歌档案」入口，也可在命令台查找「打开听歌档案」。
 
 更新时替换模组目录中的程序文件，再重载、重新启用。统计数据保存在独立目录，更新包不携带你的记录。

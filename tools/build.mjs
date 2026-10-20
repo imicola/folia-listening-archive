@@ -5,7 +5,8 @@ await build({entryPoints:['src/client/index.tsx'],bundle:true,format:'esm',platf
 await build({stdin:{contents:"import activate from './src/main/index'; module.exports = activate;",resolveDir:process.cwd(),loader:'ts'},bundle:true,format:'cjs',platform:'node',target:'node20',outfile:'dist/listening-archive/index.cjs',minify:true});
 await build({entryPoints:['src/main/analytics-worker.ts'],bundle:true,format:'cjs',platform:'node',target:'node20',outfile:'dist/listening-archive/analytics.cjs',minify:true});
 for(const file of ['mod.json','README.md','CHANGELOG.md','LICENSE','THIRD_PARTY_NOTICES.txt','VALIDATION.md'])if(fs.existsSync(file))fs.copyFileSync(file,`dist/listening-archive/${file}`);
-fs.cpSync('docs','dist/listening-archive/docs',{recursive:true});
+fs.mkdirSync('dist/listening-archive/docs',{recursive:true});
+fs.copyFileSync('docs/SUBMISSION.md','dist/listening-archive/docs/SUBMISSION.md');
 await build({entryPoints:['src/preview/index.tsx'],bundle:true,format:'esm',platform:'browser',target:'chrome120',outfile:'dist/preview.mjs',loader:{'.css':'text'},minify:false});
 fs.copyFileSync('src/preview/index.html','dist/index.html');
 if(fs.existsSync('src/preview/assets'))fs.cpSync('src/preview/assets','dist/assets',{recursive:true});
