@@ -1,6 +1,6 @@
 {
   "name": "folia-listening-archive",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "description": "Folia 听歌档案：本机统计与网易云排行、时长报告",

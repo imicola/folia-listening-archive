@@ -7,6 +7,7 @@ await build({entryPoints:['src/main/analytics-worker.ts'],bundle:true,format:'cj
 for(const file of ['mod.json','README.md','CHANGELOG.md','LICENSE','THIRD_PARTY_NOTICES.txt','VALIDATION.md'])if(fs.existsSync(file))fs.copyFileSync(file,`dist/listening-archive/${file}`);
 fs.mkdirSync('dist/listening-archive/docs',{recursive:true});
 fs.copyFileSync('docs/SUBMISSION.md','dist/listening-archive/docs/SUBMISSION.md');
+fs.cpSync('docs/screenshots','dist/listening-archive/docs/screenshots',{recursive:true});
 await build({entryPoints:['src/preview/index.tsx'],bundle:true,format:'esm',platform:'browser',target:'chrome120',outfile:'dist/preview.mjs',loader:{'.css':'text'},minify:false});
 fs.copyFileSync('src/preview/index.html','dist/index.html');
 if(fs.existsSync('src/preview/assets'))fs.cpSync('src/preview/assets','dist/assets',{recursive:true});

@@ -1,24 +1,79 @@
 import { aggregate, recordPage, trajectory } from '../core/aggregate';
 import { splitSegment,songKey, type ArchiveService, type Artwork,type Listen, type Song } from '../core/model';
-// Original abstract placeholders, not album covers or personal screenshots.
-function reference(title:string,artist:string,x:number,y:number,w:number,h:number):{song:Song;art:Artwork}{
-  const hue=(x+y+w+h)%360;
-  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="hsl(${hue} 42% 26%)"/><stop offset="1" stop-color="hsl(${(hue+75)%360} 55% 66%)"/></linearGradient></defs><path fill="url(#g)" d="M0 0h640v640H0z"/><circle cx="420" cy="200" r="170" fill="#fff" opacity=".15"/><path d="M-40 470Q200 120 680 460M-40 540Q230 230 680 530" fill="none" stroke="#fff" stroke-width="35" opacity=".18"/></svg>`;
-  return {song:{id:'preview-'+title,title,artist,album:null,source:'preview'},art:{url:'data:image/svg+xml,'+encodeURIComponent(svg)}};
-}
+// Public song metadata and matching covers only; all listening records are synthetic.
 const references=[
-  reference('月 feat. ヰ世界情緒','Guiano / ヰ世界情緒',220,286,642,642),
-  reference('Light of Nibel (feat. Aeralie Brighton)','Gareth Coker / Aeralie Brighton',218,0,646,210),
-  reference('時を刻む唄','Lia',0,65,210,150),
-  reference('ヒバナ','DECO*27 / 初音ミク',875,720,203,150),
-  reference('探し物','omoken',875,505,203,150),
-  reference('一番絵のステップ','sasakure.UK / そらこ',875,285,203,145),
-  reference('ザムザ','てにをは / 初音ミク',0,939,210,142),
-  reference('five seconds before sunrise','lasah / sasakure.UK',436,939,209,140),
-  reference('ぼくらの16bit戦争 (feat. GUMI) [Remastered]','sasakure.UK / GUMI',219,939,210,130),
-  reference('アカリがやってきたぞっ','GYARI / 紲星あかり',652,939,210,140),
-];
-const catalogue=references.map(r=>r.song);
+  {
+    "name": "惑星間SA",
+    "artists": "窓辺リカ / グミねんど民放 / 白迦",
+    "album": "惑星間SA",
+    "cover": "https://p3.music.126.net/pbdmakW2AEB0CMigm_V9ag==/109951171425371558.jpg",
+    "file": "cover-0.jpg"
+  },
+  {
+    "name": "水母病",
+    "artists": "洛天依 / 砂妍Lumean",
+    "album": "水母病 - Single",
+    "cover": "https://p4.music.126.net/brY9Yy4qyt-PCdfqam2LOQ==/109951173727943142.jpg",
+    "file": "cover-1.jpg"
+  },
+  {
+    "name": "月が綺麗ねと言われたい！",
+    "artists": "柿崎ユウタ",
+    "album": "月が綺麗ねと言われたい！",
+    "cover": "https://p3.music.126.net/Q8U0jJHtO4QQ6dDatmOUdw==/109951172617879525.jpg",
+    "file": "cover-2.jpg"
+  },
+  {
+    "name": "GHOST OF LORELEY",
+    "artists": "lasah",
+    "album": "\"I LOVE YOU, \"",
+    "cover": "https://p4.music.126.net/-W-Syb6crmpSdgAbAeWT3Q==/109951165780318709.jpg",
+    "file": "cover-3.jpg"
+  },
+  {
+    "name": "Mystery Train",
+    "artists": "Omar Akram",
+    "album": "Destiny",
+    "cover": "https://p4.music.126.net/fNHfR31UZVlZ_DaHrAO_pw==/109951164140507200.jpg",
+    "file": "cover-4.jpg"
+  },
+  {
+    "name": "Shiori",
+    "artists": "jizue",
+    "album": "Shiori",
+    "cover": "https://p3.music.126.net/iVjiNz4B9lIq5tRVYU0gaw==/8930233440843495.jpg",
+    "file": "cover-5.jpg"
+  },
+  {
+    "name": "trot",
+    "artists": "jizue",
+    "album": "story",
+    "cover": "https://p4.music.126.net/GuONlwktEbNcYBTI9GMAcA==/3413983606583133.jpg",
+    "file": "cover-6.jpg"
+  },
+  {
+    "name": "tsuki no koibumi",
+    "artists": "Laura Shigihara / C418",
+    "album": "one",
+    "cover": "https://p3.music.126.net/LshRe2pLPDJ9Ud7AIxWCFw==/109951163733665983.jpg",
+    "file": "cover-7.jpg"
+  },
+  {
+    "name": "なんてったって春",
+    "artists": "サカナクション",
+    "album": "sakanaction",
+    "cover": "https://p4.music.126.net/o5KCqGVE4TGua3ob66N2SA==/109951171282712666.jpg",
+    "file": "cover-8.jpg"
+  },
+  {
+    "name": "ワンダー",
+    "artists": "r-906 / 初音ミク",
+    "album": "ワンダー",
+    "cover": "https://p3.music.126.net/cOQdwWu53og2PCGny3ub0Q==/109951173553130997.jpg",
+    "file": "cover-9.jpg"
+  }
+].map((r,i)=>({song:{id:'preview-'+i,title:r.name,artist:r.artists,album:r.album,source:'preview'} as Song,art:{url:'/assets/'+r.file} as Artwork}));
+export const catalogue=references.map(r=>r.song);
 export function generateDemo():Listen[]{
   let seed=87902;const random=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);const records:Listen[]=[];
   const now=new Date();const first=new Date(now.getFullYear(),0,1);

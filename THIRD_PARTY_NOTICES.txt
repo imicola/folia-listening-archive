@@ -21,3 +21,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Preview / README cover artwork
+Real album covers are used for interface demonstration only. Copyright belongs to the respective rights holders; these images are excluded from the project MIT license. Documentation screenshots include the artwork; original preview image files are not bundled in the installable mod. Public song metadata and source URLs: src/preview/assets/covers.json. Listening statistics and account data in the preview are synthetic.

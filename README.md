@@ -4,22 +4,22 @@
 
 适配并实际加载验证：Windows 上的 Folia 0.7.21、Folium 1.6。其他系统和后续 Folia 版本尚未实测。
 
-当前版本 1.2.0：排行改为可无限拖动、聚焦的封面画布；从榜单播放会替换整条队列，收起统计横幅后进入 Folia 原生队列拼贴。网易云展示完整返回榜单（实测周榜、总榜均为 100 首），沿用现有登录。修复封面交接、来源菜单越界、报告保存按钮遮挡和周期切换日期漂移。
+当前版本 1.2.1：亚克力横幅随横向画布持续延伸，移除右下角常驻提示；README 改用真实歌曲封面。此前 1.2.0：排行改为可无限拖动、聚焦的封面画布；从榜单播放会替换整条队列，收起统计横幅后进入 Folia 原生队列拼贴。网易云展示完整返回榜单（实测周榜、总榜均为 100 首），沿用现有登录。修复封面交接、来源菜单越界、报告保存按钮遮挡和周期切换日期漂移。
 
-源码与问题反馈：[GitHub 仓库](https://github.com/imicola/folia-listening-archive) · 安装包：[Releases](https://github.com/imicola/folia-listening-archive/releases/latest)
+源码与问题反馈：[GitHub 仓库](https://github.com/imicola/folia-listening-archive) · 安装包：[Releases](https://github.com/imicola/folia-listening-archive/releases/tag/v1.2.1)
 
 ## 界面预览
 
-截图使用合成数据、示例账号和原创抽象占位图，不含真实账号资料。[查看全部 7 张截图](https://github.com/imicola/folia-listening-archive/blob/v1.2.0/docs/screenshots/README.md)。
+截图使用真实歌曲及其对应专辑封面，搭配合成听歌数据和示例账号，不含真实账号资料。[查看全部 7 张截图](docs/screenshots/README.md)。
 
-![Folia 本机排行示例](https://raw.githubusercontent.com/imicola/folia-listening-archive/v1.2.0/docs/screenshots/folia-rank.png)
+![Folia 本机排行示例](docs/screenshots/folia-rank.png)
 
-![网易云时长示例](https://raw.githubusercontent.com/imicola/folia-listening-archive/v1.2.0/docs/screenshots/netease-time.png)
+![网易云时长示例](docs/screenshots/netease-time.png)
 
 ## 安装
 
 1. 在 Folia 的「设置 → 模组」开启模组系统。
-2. 安装 `listening-archive-v1.2.0.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
+2. 安装 `listening-archive-v1.2.1.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
 3. 启用「听歌档案」，阅读 Folia 显示的权限说明并确认。首页会出现「听歌档案」入口，也可在命令台查找「打开听歌档案」。
 
 更新时替换模组目录中的程序文件，再重载、重新启用；若仍显示旧界面，退出并重启 Folia。统计数据保存在独立目录，更新包不携带你的记录。
@@ -40,7 +40,7 @@
 
 ## Folia 本机档案使用
 
-- **听歌排行**：拖动或滚轮浏览重复铺排的无限画布，歌曲只在队列中出现一次。点击封面放大聚焦，Escape 收起；右下角可回到统计横幅。支持歌曲／歌手／专辑、排序和搜索。
+- **听歌排行**：拖动或滚轮浏览重复铺排的无限画布，歌曲只在队列中出现一次。点击封面放大聚焦，Escape 收起；画布获得焦点后按 Home 回到统计横幅。支持歌曲／歌手／专辑、排序和搜索。
 - **整队播放**：「▷」和「播放当前榜单」以当前筛选榜单覆盖原队列，从所选歌曲开始，收起横幅并进入 Folia 原生拼贴；「＋」和「热门加入队列」仍是明确的追加操作。
 - **日期锚点**：切换日／周／月／年时回到当前日期对应周期，上一／下一周期用于浏览历史。
 - **听歌时长**：选择日／周／月／年，在声河、热力图、折线图之间切换。点击时间位置查看对应记录。声河以真实小时／日／月汇总形成光带，空白时间保持空白。
@@ -91,6 +91,6 @@ npm run test:package
 npm run preview
 ```
 
-预览地址 `http://127.0.0.1:4326`，仅绑定本机。预览中的听歌记录为合成示例，图像为原创抽象占位图，与真实专辑封面无关；预览操作不控制真实 Folia，也不连接真实账号。Windows 上运行 `npm run package` 生成安装 ZIP。
+预览地址 `http://127.0.0.1:4326`，仅绑定本机。预览中的听歌记录为合成示例，图像为与曲目对应的真实专辑封面，来源见 src/preview/assets/covers.json；预览操作不控制真实 Folia，也不连接真实账号。Windows 上运行 `npm run package` 生成安装 ZIP。
 
 安装包自带界面依赖，不需要用户另装 Node。实测范围见 [VALIDATION.md](VALIDATION.md)，提交模组时可参考 [docs/SUBMISSION.md](docs/SUBMISSION.md)。
