@@ -3,11 +3,11 @@
 - 名称：听歌档案
 - 模组 ID：`listening-archive`
 - 作者：imicola
-- 版本：1.2.2
+- 版本：1.2.3
 - 许可证：MIT
 - 兼容声明：Folia `>=0.7.21 <0.8.0`；实际验证 Windows / Folia 0.7.21 / Folium 1.6
 - 源码：https://github.com/imicola/folia-listening-archive
-- 安装包：https://github.com/imicola/folia-listening-archive/releases/tag/v1.2.2
+- 安装包：https://github.com/imicola/folia-listening-archive/releases/tag/v1.2.3
 
 ## 简介
 
@@ -15,7 +15,7 @@
 
 ## 安装
 
-下载 Release 的 `listening-archive-v1.2.2.zip`，在 Folia 模组设置中安装并启用。手动安装时，将 ZIP 中的 `listening-archive` 文件夹完整解压到模组目录并重载。无需另装 Node.js 或单独部署网易云服务。
+下载 Release 的 `listening-archive-v1.2.3.zip`，在 Folia 模组设置中安装并启用。手动安装时，将 ZIP 中的 `listening-archive` 文件夹完整解压到模组目录并重载。无需另装 Node.js 或单独部署网易云服务。
 
 ## 权限用途
 

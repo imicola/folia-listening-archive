@@ -1,5 +1,7 @@
 node_modules/
-dist/
+# 构建产物默认不入库，唯一例外是打包好的模组目录（folium-compound 按子目录收录它）
+dist/*
+!dist/listening-archive/
 .test-build/
 preview-data/
 .env

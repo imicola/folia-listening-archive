@@ -4,9 +4,9 @@
 
 适配并实际加载验证：Windows 上的 Folia 0.7.21、Folium 1.6。其他系统和后续 Folia 版本尚未实测。
 
-当前版本 1.2.2：新增模组介绍图，manifest 声明 `preview.jpg`，构建和安装包同步携带。此前 1.2.1：亚克力横幅随横向画布持续延伸，移除右下角常驻提示；README 改用真实歌曲封面。此前 1.2.0：排行改为可无限拖动、聚焦的封面画布；从榜单播放会替换整条队列，收起统计横幅后进入 Folia 原生队列拼贴。网易云展示完整返回榜单（实测周榜、总榜均为 100 首），沿用现有登录。修复封面交接、来源菜单越界、报告保存按钮遮挡和周期切换日期漂移。
+当前版本 1.2.3：打包目录 `dist/listening-archive` 随源码入库，用于 folium-compound 模组市场按子目录收录；安装包不再包含仓库截图。此前 1.2.2：新增模组介绍图，manifest 声明 `preview.jpg`，构建和安装包同步携带。此前 1.2.1：亚克力横幅随横向画布持续延伸，移除右下角常驻提示；README 改用真实歌曲封面。此前 1.2.0：排行改为可无限拖动、聚焦的封面画布；从榜单播放会替换整条队列，收起统计横幅后进入 Folia 原生队列拼贴。网易云展示完整返回榜单（实测周榜、总榜均为 100 首），沿用现有登录。修复封面交接、来源菜单越界、报告保存按钮遮挡和周期切换日期漂移。
 
-源码与问题反馈：[GitHub 仓库](https://github.com/imicola/folia-listening-archive) · 安装包：[Releases](https://github.com/imicola/folia-listening-archive/releases/tag/v1.2.2)
+源码与问题反馈：[GitHub 仓库](https://github.com/imicola/folia-listening-archive) · 安装包：[Releases](https://github.com/imicola/folia-listening-archive/releases/tag/v1.2.3)
 
 ## 界面预览
 
@@ -23,7 +23,7 @@
 ## 安装
 
 1. 在 Folia 的「设置 → 模组」开启模组系统。
-2. 安装 `listening-archive-v1.2.2.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
+2. 安装 `listening-archive-v1.2.3.zip`。若界面没有安装 ZIP 的入口，点击「打开模组目录」，将 ZIP 中的 `listening-archive` 文件夹完整解压到该目录，再点击「重载」。
 3. 启用「听歌档案」，阅读 Folia 显示的权限说明并确认。首页会出现「听歌档案」入口，也可在命令台查找「打开听歌档案」。
 
 更新时替换模组目录中的程序文件，再重载、重新启用；若仍显示旧界面，退出并重启 Folia。统计数据保存在独立目录，更新包不携带你的记录。
