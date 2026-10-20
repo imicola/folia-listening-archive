@@ -1,9 +1,9 @@
 {
   "name": "folia-listening-archive",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": true,
   "type": "module",
-  "description": "Folia 听歌档案：本机统计与网易云排行、时长报告",
+  "description": "Folia 本机听歌档案：播放排行、累计时长、声河、热力图、单曲轨迹与备份。",
   "scripts": {
     "build": "node tools/build.mjs",
     "typecheck": "tsc --noEmit",

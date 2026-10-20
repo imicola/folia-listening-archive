@@ -14,7 +14,6 @@ export type Page<T> = { items: T[]; total: number; offset: number };
 export type ArchiveSettings = { lowPerformance: boolean };
 export type Artwork = { url:string; crop?:{x:number;y:number;w:number;h:number;imageW:number;imageH:number} };
 export interface ArchiveService {
-  startQueue?(keys:string[],selected:string,before?:()=>Promise<void>):Promise<{added:number;missing:number;preview?:boolean}>;
   play(keys:string[],mode:'queue'|'play'):Promise<{added:number;missing:number;preview?:boolean}>;
   artworks(keys:string[]):Promise<Record<string,Artwork>>;
   saveArtwork(key:string,data:string):Promise<void>;

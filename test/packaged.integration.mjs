@@ -4,6 +4,12 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),activate=require('../dist/listening-archive/index.cjs');
 const root=path.resolve('.test-build/packaged-'+Date.now());fs.mkdirSync(root,{recursive:true});
+const packaged=path.resolve('dist/listening-archive');
+assert.deepEqual(fs.readdirSync(packaged).sort(),['CHANGELOG.md','LICENSE','README.md','THIRD_PARTY_NOTICES.txt','analytics.cjs','client.mjs','index.cjs','mod.json','preview.jpg'].sort());
+for(const entry of ['client.mjs','index.cjs','analytics.cjs']){
+ const text=fs.readFileSync(path.join(packaged,entry),'utf8');
+ for(const forbidden of ['getNeteasePort','online_provider:netease:cookie','netease_cookie','KineticPlayerDB','indexedDB','usePlaybackStore-','useAppViewStore-','KeyboardEvent','netease.state','127.0.0.1'])assert(!text.includes(forbidden),`${entry}: forbidden private dependency ${forbidden}`);
+}
 const instances=[];
 function start(name){const rpc=new Map(),dispose=[],warnings=[];const api={storage:{paths:{data:path.join(root,name)}},paths:{documents:path.join(root,'documents')},rpc:{handle:(name,fn)=>rpc.set(name,fn)},log:{warn:s=>warnings.push(s),info:()=>{}},onDispose:fn=>dispose.push(fn)};activate(api);instances.push(dispose);return {rpc,warnings,call:(name,...args)=>rpc.get(name)(...args)}}
 try{
@@ -24,14 +30,7 @@ try{
   const c=start('a');assert.equal((await c.call('archive.query',query)).summary.plays,1);assert.equal(c.call('archive.artworks',[key])[key].url,data);
   assert.equal(c.call('archive.settings').lowPerformance,true);
   assert.deepEqual([...a.warnings,...b.warnings,...c.warnings],[]);
-  a.call('netease.account',{uid:'42',nickname:'Packaged fixture'});
-  a.call('netease.rank','42','week',{code:200,weekData:[{playCount:7,song:{id:123,name:'Cloud fixture',ar:[{id:1,name:'Artist'}],al:{id:1,name:'Album'}}}]});
-  a.call('netease.report','42','week',{code:200,data:{listenTime:120000,cookie:'must-not-persist'}});
-  const cloudConfig=a.call('netease.state').config;
-  a.call('netease.configure',{...cloudConfig,mappings:{week:{path:'data.listenTime',unit:'milliseconds'}}});
-  const d=start('a'),cloud=d.call('netease.state');assert.equal(cloud.loggedIn,false);assert.equal(cloud.ranks.week.songs[0].plays,7);assert.equal(cloud.reports.week.seconds,120);
-  assert.equal((await d.call('archive.query',query)).summary.plays,1);
-  assert(!fs.readFileSync(path.join(root,'a/netease/report-week.json'),'utf8').includes('must-not-persist'));
-  console.log('Packaged NetEase RPC: separate snapshots, duration units, credential stripping and restart passed.');
+  assert(![...a.rpc.keys()].some(name=>name.startsWith('netease.')));
+  assert(!fs.existsSync(path.join(root,'a/netease')));
   console.log('Packaged main + worker: recording, query, trajectory, artwork, settings, restart and backup round-trip passed.');
 }finally{instances.forEach(list=>list.forEach(fn=>fn()));await new Promise(resolve=>setTimeout(resolve,200));fs.rmSync(root,{recursive:true,force:true})}

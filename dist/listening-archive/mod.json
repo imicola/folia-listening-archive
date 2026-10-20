@@ -2,10 +2,10 @@
   "folium": 1,
   "id": "listening-archive",
   "name": "听歌档案",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "preview": "preview.jpg",
   "author": "imicola",
-  "description": "Folia 本机听歌档案与网易云云端排行、时长报告；沿用 Folia 网易云登录。",
+  "description": "Folia 本机听歌档案：播放排行、累计时长、声河、热力图、单曲轨迹与备份。",
   "client": "client.mjs",
   "main": "index.cjs",
   "permissions": [
