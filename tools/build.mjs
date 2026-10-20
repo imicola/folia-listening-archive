@@ -1,6 +1,11 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
 fs.mkdirSync('dist/listening-archive',{recursive:true});
+const manifest=JSON.parse(fs.readFileSync('mod.json','utf8'));
+if(manifest.preview!=='preview.jpg')throw new Error('Expected the packaged preview.jpg');
+const preview=fs.readFileSync(manifest.preview);
+if(preview.length>1000000)throw new Error('Mod preview must be under 1 MB');
+fs.copyFileSync(manifest.preview,`dist/listening-archive/${manifest.preview}`);
 await build({entryPoints:['src/client/index.tsx'],bundle:true,format:'esm',platform:'browser',target:'chrome120',outfile:'dist/listening-archive/client.mjs',loader:{'.css':'text'},minify:true,legalComments:'eof'});
 await build({stdin:{contents:"import activate from './src/main/index'; module.exports = activate;",resolveDir:process.cwd(),loader:'ts'},bundle:true,format:'cjs',platform:'node',target:'node20',outfile:'dist/listening-archive/index.cjs',minify:true});
 await build({entryPoints:['src/main/analytics-worker.ts'],bundle:true,format:'cjs',platform:'node',target:'node20',outfile:'dist/listening-archive/analytics.cjs',minify:true});
