@@ -7,7 +7,7 @@ type Handle = { unregister(): void };
 export interface Folium {
   host: { folium: { major: number; minor: number } }; env: { context: string };
   theme:{resolveFontStack(theme:Theme):string};
-  playback: { getState(): Playback; getQueue(options?: {limit?:number;offset?:number}): { kind: string;length:number;items:{song:Song}[] };enqueue(song:Song):boolean;playSong(song:Song):Promise<boolean> };
+  playback: { getState(): Playback; getQueue(options?: {limit?:number;offset?:number}): { kind: string;length:number;items:{song:Song}[] };enqueue(song:Song):boolean;playSong(song:Song):Promise<boolean>;playQueueItem?(index:number,expectedRef?:string):Promise<boolean> };
   events: { on(name: string, callback: (data: any) => void): () => void };
   every(ms: number, callback: () => void): () => void;
   rpc: { call<T = unknown>(name: string, ...args: unknown[]): Promise<T> };

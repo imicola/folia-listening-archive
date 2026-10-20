@@ -25,6 +25,7 @@ export function knownReportMapping(metric:Metric,data:any):DurationMapping|undef
 }
 export type CloudState={config:CloudConfig;loggedIn:boolean;nickname:string;ranks:Partial<Record<CloudScope,CloudRank>>;reports:Partial<Record<Metric,CloudReport>>};
 export interface CloudService{
+ play?(songs:CloudSong[],selected:string,before?:()=>Promise<void>):Promise<{added:number;missing:number;preview?:boolean}>;
  state():Promise<CloudState>; configure(config:CloudConfig):Promise<CloudState>;
  connect():Promise<CloudState>;
  sync(scope:CloudScope):Promise<CloudState>;reports():Promise<CloudState>;

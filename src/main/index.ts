@@ -4,7 +4,7 @@ import {Worker} from 'node:worker_threads';
 import {createHash} from 'node:crypto';
 import { ArchiveStore,validateListen } from './store';
 import { aggregate, recordPage, trajectory } from '../core/aggregate';
-import type { Query, Period } from '../core/model';
+import {songKey,type Query,type Period,type Song} from '../core/model';
 import {NeteaseStore} from './netease';
 interface MainApi {
   storage: { paths: { data: string } }; paths: { documents: string };
@@ -49,6 +49,7 @@ export default function activate(api: MainApi) {
     if (typeof key !== 'string' || key.length > 10000 || !['day','week','month','year'].includes(period)) throw new Error('轨迹查询无效');
     return ask('trajectory',key,period);
   });
+  api.rpc.handle('archive.songs',(keys:string[])=>{if(!Array.isArray(keys)||keys.length>10000||keys.some(k=>typeof k!=='string'))throw new Error('歌曲列表无效');const wanted=new Set(keys),out:Record<string,Song>={};for(const row of store.all()){const key=songKey(row.song);if(wanted.has(key))out[key]=row.song}return out});
   api.rpc.handle('archive.settings', patch => store.settings(patch));
   api.rpc.handle('archive.export', () => {
     const dir = path.join(api.paths.documents, 'Folia 听歌档案备份'); fs.mkdirSync(dir, { recursive: true });
