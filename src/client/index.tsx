@@ -9,11 +9,15 @@ import dense from './dense.css';
 import refinements from './refinements.css';
 import { rpcService, type Folium, type PanelContext } from './host';
 import {createCoverObserver} from './cover-observer';
+import {createFoliaCloud} from './netease-host';
+import {playCloudSongs} from './cloud-playback';
 
 export default function activate(f: Folium) {
   if (f.env.context !== 'main') return;
-  if (f.host.folium.major !== 1 || f.host.folium.minor < 6) throw new Error('听歌档案需要 Folium 1.6 或以上版本。');
+  if (f.host.folium.major !== 1 || f.host.folium.minor < 7) throw new Error('此版本听歌档案需要 Folium 1.7；旧稳定版请使用 v1.2.4。');
   const service = rpcService(f), pending = new Map<string, Listen>();
+  const connection=createFoliaCloud(f);
+  const cloud={...connection,play:(songs:import('../core/netease').CloudSong[],selected:string)=>playCloudSongs(f.playback,songs,selected)};
   let sending = false, failed = false, stopped = false;
   async function flush() {
     if (sending) return;
@@ -48,7 +52,7 @@ export default function activate(f: Folium) {
       const style = document.createElement('style'); style.textContent = styles+acrylic+dense+refinements;
       const element = document.createElement('div'); element.className = 'archive-mount'; container.append(style, element);
       const root = createRoot(element); remembered = root;
-      const render = () => {const theme=ctx.getTheme();root.render(<App service={service} theme={{...theme,fontStack:f.theme.resolveFontStack(theme)}} />)};
+      const render = () => {const theme=ctx.getTheme();root.render(<App service={service} cloud={cloud} theme={{...theme,fontStack:f.theme.resolveFontStack(theme)}} />)};
       render(); const off = ctx.onChange(render);
       return () => { off(); root.unmount(); remembered = null; style.remove(); element.remove(); };
     },
@@ -63,6 +67,7 @@ export default function activate(f: Folium) {
     void observer.capture();const off=ctx.onChange(()=>void observer.capture());return()=>{observer.dispose();off()};
   }});
   return () => {
+    connection.dispose();
     sample(); stopped = true; tracker.dispose(); void flush();
     disposers.forEach(fn => fn()); page.unregister(); command.unregister();coverObserver.unregister();
   };

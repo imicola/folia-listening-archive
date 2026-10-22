@@ -1,7 +1,7 @@
 import {songKey,type Song} from '../core/model';
 export interface PlaybackAccess {
   getState():{song:Song|null};
-  getQueue(options:{offset:number;limit:number}):{length:number;items:{song:Song}[]};
+  getQueue(options:{offset:number;limit:number}):{kind?:string;length:number;items:{song:Song}[]};
   enqueue(song:Song):boolean;
   playSong(song:Song):Promise<boolean>;
 }

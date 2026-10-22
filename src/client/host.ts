@@ -5,6 +5,8 @@ export type Theme = { backgroundColor: string; primaryColor: string; secondaryCo
 export interface PanelContext { getTheme(): Theme; onChange(fn: () => void): () => void; onDispose(fn: () => void): void }
 type Handle = { unregister(): void };
 export interface Folium {
+  account?:{getState(provider:string):import('./netease-host').AccountState|null};
+  experimental?:Readonly<Record<string,unknown>>;
   host: { folium: { major: number; minor: number } }; env: { context: string };
   theme:{resolveFontStack(theme:Theme):string};
   playback: { getState(): Playback; getQueue(options?: {limit?:number;offset?:number}): { kind: string;length:number;items:{song:Song}[] };enqueue(song:Song):boolean;playSong(song:Song):Promise<boolean>;playQueueItem?(index:number,expectedRef?:string):Promise<boolean> };

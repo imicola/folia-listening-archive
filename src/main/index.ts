@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {Worker} from 'node:worker_threads';
+import {NeteaseStore} from './netease';
 import {createHash} from 'node:crypto';
 import { ArchiveStore,validateListen } from './store';
 import { aggregate, recordPage, trajectory } from '../core/aggregate';
@@ -19,6 +20,13 @@ function validQuery(q: Query, bounded = true): Query {
 }
 export default function activate(api: MainApi) {
   const store = new ArchiveStore(api.storage.paths.data);
+  const cloud=new NeteaseStore(path.join(api.storage.paths.data,'netease'));
+  api.rpc.handle('netease.state',()=>cloud.get());
+  api.rpc.handle('netease.invalidate',()=>cloud.invalidate());
+  api.rpc.handle('netease.configure',config=>cloud.configure(config));
+  api.rpc.handle('netease.account',profile=>cloud.account(profile));
+  api.rpc.handle('netease.rank',(accountKey,scope,raw)=>cloud.rank(accountKey,scope,raw));
+  api.rpc.handle('netease.report',(accountKey,metric,raw,error)=>cloud.report(accountKey,metric,raw,error));
   const worker=new Worker(path.join(__dirname,'analytics.cjs'));
   worker.postMessage({type:'init',records:store.all()});
   let serial=0,workerError:Error|null=null,disposed=false;
