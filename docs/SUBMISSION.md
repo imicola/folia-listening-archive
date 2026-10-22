@@ -1,7 +1,7 @@
 # 模组更新资料草稿（尚未提交）
 
 - 听歌档案 / listening-archive，imicola，MIT
-- 版本 v1.3.0，目录 dist/listening-archive
+- 版本 v1.3.1，目录 dist/listening-archive
 - 源码 https://github.com/imicola/folia-listening-archive
 - 本次先发布仓库预发布 Release；folium-compound #61 及市场更新 issue 保持原状。待官方稳定版包含 Folium 1.7，并完成新版本验证后，再准备正式市场更新。
 

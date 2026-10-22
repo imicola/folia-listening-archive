@@ -1,4 +1,4 @@
-# 1.3.0 · 2026-10-22
+# 1.3.1 · 2026-10-22
 
 - 使用官方 Folium 1.7 账号接口与实验性 platform.raw 恢复网易云周榜、总榜和累计/周/月时长报告。仅申请 platform.netease.read，不接触 Cookie、Token、用户 ID 或本机服务端口。
 - 本包需要 Folium 1.7 / Limo 或后续版本。Folium 1.6 的稳定版会拒绝新权限声明，请继续使用 v1.2.4。

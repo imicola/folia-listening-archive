@@ -2,9 +2,9 @@
 
 记录 Folia 本机播放：歌曲／歌手／专辑排行、累计时长、声河、热力图、折线图、单曲轨迹与备份。封面画布支持拖动与聚焦，适配深浅主题和低性能模式。
 
-v1.3.0 恢复网易云档案，使用 Folia 官方账号接口与实验性 `platform.raw`。仅申请网易云读取权限，凭据始终由宿主管理。此版本为预发布，尚未申请新的市场审查或签名。
+v1.3.1 恢复网易云档案，使用 Folia 官方账号接口与实验性 `platform.raw`。仅申请网易云读取权限，凭据始终由宿主管理。此版本为预发布，尚未申请新的市场审查或签名。
 
-兼容声明：本版本整体需要 Folium 1.7（含网易云读取权限声明）。当前稳定版 Folia v0.7.21 不含新接口；已发布的 [Limo 0.7.21-beta.1792567131](https://github.com/chthollyphile/folia-major/releases/tag/limo) 包含新接口。旧稳定版会在清单校验时拒绝新权限，无法加载此包；稳定版用户请继续使用已签名的 v1.2.4。验证范围见源码仓库 VALIDATION.md，本版尚未进行真实账号在线验收。
+兼容声明：本版本整体需要 Folium 1.7（含网易云读取权限声明）。不设置 Folia 数字版本范围，以兼容带 beta 后缀的夜间版；客户端严格检查 Folium major=1、minor>=7。当前稳定版 Folia v0.7.21 不含新接口；已发布的 [Limo 0.7.21-beta.1792567131](https://github.com/chthollyphile/folia-major/releases/tag/limo) 包含新接口。旧稳定版会在清单校验时拒绝新权限，无法加载此包；稳定版用户请继续使用已签名的 v1.2.4。验证范围见源码仓库 VALIDATION.md，本版尚未进行真实账号在线验收。
 
 源码：[GitHub](https://github.com/imicola/folia-listening-archive) · [版本下载](https://github.com/imicola/folia-listening-archive/releases)
 
@@ -13,7 +13,7 @@ v1.3.0 恢复网易云档案，使用 Folia 官方账号接口与实验性 `plat
 ## 安装
 
 1. 在 Folia「设置 → 模组」开启模组系统。
-2. 安装 `listening-archive-v1.3.0.zip`；若没有 ZIP 安装入口，将包内 `listening-archive` 文件夹完整解压至模组目录，再重载。
+2. 安装 `listening-archive-v1.3.1.zip`；若没有 ZIP 安装入口，将包内 `listening-archive` 文件夹完整解压至模组目录，再重载。
 3. 启用模组并确认权限；从首页或命令台打开「听歌档案」。
 
 更新前先导出本机记录，并在退出 Folia 后备份 `mods-data/listening-archive`。完整替换模组程序目录，保留数据目录，再重新确认权限；勿同时启用相同 id 的副本。旧网易云自用版缓存会重置，需要重新同步及确认报告单位。本机记录保留。首次启用前不会回填本机历史。
